@@ -1,0 +1,7 @@
+.*
+!/.gitignore
+node_modules/
+/butterscotch/
+/butterscotch-themes/
+/docs/
+/processes.json
