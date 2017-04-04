@@ -6,4 +6,4 @@ var pluginsFamilySchema = mongoose.Schema({
 });
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('plugins-family', pluginsFamilySchema);
+module.exports = mongoose.model('plugins_family', pluginsFamilySchema);

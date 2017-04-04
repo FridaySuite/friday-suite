@@ -4,7 +4,8 @@
 var winston = require('winston');
 winston.emitErrs = true;
 
-var logger = new (winston.Logger)({
+
+winston.configure({
 	transports: [
 		new (winston.transports.File)({
 			handleExceptions: true,
@@ -32,9 +33,4 @@ var logger = new (winston.Logger)({
 	]
 });
 
-module.exports = logger;
-module.exports.stream = {
-	write: function (message, encoding) {
-		logger.info(message);
-	}
-};
+module.exports = winston;
