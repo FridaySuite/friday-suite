@@ -1,5 +1,5 @@
 'use strict'
-var modules = require('./loader.js')
+var plugins = require('./loader.js')
 var express = require('express')
 var path = require('path')
 var logger = require('winston')
@@ -9,24 +9,46 @@ module.exports = function (config) {
   var themesDir = path.join(config.rootDir, config.themesFamily, 'node_modules')
   adminApp.use('/public', express.static(themesDir))
   mainApp.use('/public', express.static(themesDir))
-  modules.rootDir = config.rootDir
-  modules.config = config
-  return modules.loadPlugins(config.plugins)
+  plugins.rootDir = config.rootDir
+  plugins.config = config
+  
+  const ankit = plugins.addProperties(config.plugins, config)
+  plugins.modifyDefinition(ankit)
+  return plugins.initialiseModules(ankit).then(function () {
+    return plugins.initialiseThemes(ankit, config, 'adminTheme')
+  })
+    .then(function () {
+      return plugins.initialiseThemes(ankit, config, 'mainTheme')
+    })
+    .then(function () {
+      return plugins.initialisePluginsThemes(ankit)
+    })
+    .then(function () {
+      return plugins.executeModules(ankit, mainApp, adminApp)
+    })
+    .then(function () {
+      return {
+        mainApp: mainApp,
+        adminApp: adminApp,
+      }
+    })
+  
+/*  return plugins.loadPlugins(config.plugins)
     .addProperties(config)
     .hashModulesUsingNames()
     .modifyDefinition(config)
     .initialiseModules(config)
     .then(function () {
-      return modules.initialiseThemes(config, 'adminTheme')
+      return plugins.initialiseThemes(config, 'adminTheme')
     })
     .then(function () {
-      return modules.initialiseThemes(config, 'mainTheme')
+      return plugins.initialiseThemes(config, 'mainTheme')
     })
     .then(function () {
-      return modules.initialisePluginsThemes(config)
+      return plugins.initialisePluginsThemes(config)
     })
     .then(function () {
-      return modules.executeModules(mainApp, adminApp, config)
+      return plugins.executeModules(mainApp, adminApp, config)
     })
     .catch(function (er) {
       logger.error(er)
@@ -36,7 +58,8 @@ module.exports = function (config) {
       return {
         mainApp: mainApp,
         adminApp: adminApp,
-        plugins: modules.getAllPlugins()
+        plugins: plugins.getAllPlugins()
       }
     })
+    */
 }

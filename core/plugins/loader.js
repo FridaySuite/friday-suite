@@ -4,17 +4,11 @@ var bluebird = require('bluebird')
 var Injector = require('./injector.js')
 var isString = require('lodash.isstring')
 var logger = require('winston')
-var plugins,
-  hashedPlugins
 module.exports = {
-  loadPlugins: function (pluginsList) {
-    plugins = pluginsList
-    return this
-  },
-  getAllPlugins: function () {
+  getAllPlugins: function (plugins) {
     return plugins
   },
-  addProperties: function (config) {
+  addProperties: function (plugins, config) {
     /*
     modules is array of form from getModules function
     */
@@ -40,12 +34,13 @@ module.exports = {
       }
     }
 
-    plugins = plugins.map(function (plugin) {
-      var config
-      config = {
+    return plugins.map(function (plugin) {
+      const pluginDir = plugin.dir || plugin.name
+      let $config = {
         plugin: {
           name: plugin.name,
-          dir: plugin.dir || plugin.name,
+          dir: pluginDir,
+          path: '../../' + config.pluginsFamily + '/node_modules/' + pluginDir,
           theme: {
             name: plugin.theme.name || 'default_theme'
           },
@@ -54,15 +49,15 @@ module.exports = {
         },
         global: global
       }
-      configs.push(config)
-      addDirAndAssetDirToTheme(config, pluginsFamily, themesFamily, rootDir)
-      config.plugin.admin.views = [
-        config.plugin.theme.dir,
-        config.global.admin.theme.dir
+      configs.push($config)
+      addDirAndAssetDirToTheme($config, pluginsFamily, themesFamily, rootDir)
+      $config.plugin.admin.views = [
+        $config.plugin.theme.dir,
+        $config.global.admin.theme.dir
       ]
-      config.plugin.main.views = [
-        config.plugin.theme.dir,
-        config.global.main.theme.dir
+      $config.plugin.main.views = [
+        $config.plugin.theme.dir,
+        $config.global.main.theme.dir
       ]
       var instances = createNewInstances()
       return {
@@ -71,48 +66,45 @@ module.exports = {
         init: instances.init,
         privateMethod: instances.private,
         publicMethod: instances.public,
-        config: config
+        config: $config
       }
     })
-    logger.info('All the plugins have been loaded in memory')
-    return this
   },
-  hashModulesUsingNames: function () {
+  hashPluginsUsingNames: function (plugins) {
     /*
     modules is complete module object from previous function
     */
-    hashedPlugins = {}
+    const hashedPlugins = {}
     plugins.forEach(function (module) {
       hashedPlugins[module.name] = module
-      return module
     })
-    return this
+    return hashedPlugins
   },
-  modifyDefinition: function (config) {
+  modifyDefinition: function (plugins) {
     /*
     modules is complete module object from addPropertiesToModules function
     */
-    plugins.forEach(function (module) {
-      module = require('../../' + config.pluginsFamily + '/node_modules/' + module.dir)
-      if (!module.hasOwnProperty('init')) {
-        module.init = function () {
+    return plugins.map(function (plugin) {
+      let pluginExported = require(plugin.config.plugin.path)
+      if (!pluginExported.hasOwnProperty('init')) {
+        pluginExported.init = function () {
           return bluebird.resolve()
         }
       }
-      if (!module.hasOwnProperty('execute')) {
-        module.execute = function () {
+      if (!pluginExported.hasOwnProperty('execute')) {
+        pluginExported.execute = function () {
           return bluebird.resolve()
         }
       }
+      return pluginExported
     })
-    logger.info('All the plugins definition have been modified')
-    return this
   },
-  initialiseModules: function (config) {
+  initialiseModules: function (plugins) {
     var self = this
     var initialiseSequence
     var allPromise
-    initialiseSequence = createInitialiseSequence(plugins, config)
+    const hashedPlugins = this.hashPluginsUsingNames(plugins)
+    initialiseSequence = createInitialiseSequence(plugins)
     allPromise = []
     initialiseSequence.forEach(function (module) {
       var moduleObj,
@@ -128,19 +120,18 @@ module.exports = {
       module.decorates.forEach(function (m) {
         injector.add(m, hashedPlugins[m].init)
       })
-      allPromise.push(injector.getFunction(require('../../' + config.pluginsFamily + '/node_modules/' + moduleObj.dir)))
+      allPromise.push(injector.getFunction(require(moduleObj.config.plugin.path)))
       logger.info(module.name + ' initialized')
     })
     return bluebird.all(allPromise)
   },
-  initialiseThemes: function (config, typeOfTheme) {
+  initialiseThemes: function (plugins, config, typeOfTheme) {
     var themeObj,
       injector,
       self,
-      allPromise,
       themeDecorates,
       additionalDeps
-    allPromise = []
+    const hashedPlugins = this.hashPluginsUsingNames(plugins)
     try {
       themeObj = require('../../' + config.themesFamily + '/node_modules/' + config[typeOfTheme])
     } catch (err) {
@@ -155,13 +146,12 @@ module.exports = {
     themeDecorates.forEach(function (m) {
       injector.add(m, hashedPlugins[m].init)
     })
-    allPromise.push(injector.getFunction(themeObj))
-    logger.info(module.name + ' initialized')
-    return bluebird.all(allPromise)
+    return bluebird.resolve(injector.getFunction(themeObj))
   },
-  initialisePluginsThemes: function (config) {
+  initialisePluginsThemes: function (plugins) {
     var self = this
     var allPromise = []
+    const hashedPlugins = this.hashPluginsUsingNames(plugins)
     plugins.forEach(function (plugin) {
       var themeObj,
         themeDecorates,
@@ -185,13 +175,14 @@ module.exports = {
     })
     return bluebird.all(allPromise)
   },
-  executeModules: function (app, adminApp, config) {
+  executeModules: function (plugins, app, adminApp) {
     var self,
       executeSequence,
       allPromise
     self = this
-    executeSequence = createExecuteSequence(plugins, config)
+    executeSequence = createExecuteSequence(plugins)
     allPromise = []
+    const hashedPlugins = this.hashPluginsUsingNames(plugins)
     executeSequence.forEach(function (module) {
       var moduleObj,
         injector,
@@ -206,25 +197,25 @@ module.exports = {
       module.accesses.forEach(function (m) {
         injector.add(m, hashedPlugins[m].publicMethod)
       })
-      allPromise.push(injector.getToExecute(require('../../' + config.pluginsFamily + '/node_modules/' + moduleObj.dir)))
+      allPromise.push(injector.getToExecute(require(moduleObj.config.plugin.path)))
       logger.info(module.name + ' Executed ')
     })
     return bluebird.all(allPromise)
   }
 }
 
-function createInitialiseSequence (modules, config) {
+function createInitialiseSequence (plugins) {
   /*
   modules is complete module object from addPropertiesToModules
   */
-  var moduleDecorates = {}
+  var pluginDecorates = {}
   var sequence = []
   var hasBeenAdded = {}
-  modules.forEach(function (module) {
-    moduleDecorates[module.name] = getArguments(require('../../' + config.pluginsFamily + '/node_modules/' + module.dir).init)
+  plugins.forEach(function (plugin) {
+    pluginDecorates[plugin.name] = getArguments(require(plugin.config.plugin.path).init)
   })
-  modules.forEach(function (module) {
-    addToSequence(module.name)
+  plugins.forEach(function (plugin) {
+    addToSequence(plugin.name)
   })
   return sequence
 
@@ -234,7 +225,7 @@ function createInitialiseSequence (modules, config) {
     if (hasBeenAdded.hasOwnProperty(plugin)) {
       return
     }
-    thisModuleDecorates = moduleDecorates[plugin]
+    thisModuleDecorates = pluginDecorates[plugin]
     hasBeenAdded[plugin] = true
     for (i = 0; i < thisModuleDecorates.length; i++) {
       addToSequence(thisModuleDecorates[i])
@@ -246,7 +237,7 @@ function createInitialiseSequence (modules, config) {
   }
 }
 
-function createExecuteSequence (Modules, config) {
+function createExecuteSequence (Modules) {
   /*
   modules is complete module object from addPropertiesToModules
   */
@@ -254,7 +245,7 @@ function createExecuteSequence (Modules, config) {
   var sequence = []
   var hasBeenAdded = {}
   Modules.forEach(function (module) {
-    moduleAccesses[module.name] = getArguments(require('../../' + config.pluginsFamily + '/node_modules/' + module.dir).execute)
+    moduleAccesses[module.name] = getArguments(require(module.config.plugin.path).execute)
   })
   Modules.forEach(function (module) {
     addToSequence(module.name)
