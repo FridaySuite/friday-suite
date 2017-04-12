@@ -1,65 +1,61 @@
 'use strict'
-var plugins = require('./loader.js')
-var express = require('express')
-var path = require('path')
+var pluginsLoader = require('./loader.js')
 var logger = require('winston')
-module.exports = function (config) {
-  var mainApp = express()
-  var adminApp = express()
-  var themesDir = path.join(config.rootDir, config.themesFamily, 'node_modules')
-  adminApp.use('/public', express.static(themesDir))
-  mainApp.use('/public', express.static(themesDir))
-  plugins.rootDir = config.rootDir
-  plugins.config = config
-  
-  const ankit = plugins.addProperties(config.plugins, config)
-  plugins.modifyDefinition(ankit)
-  return plugins.initialiseModules(ankit).then(function () {
-    return plugins.initialiseThemes(ankit, config, 'adminTheme')
-  })
-    .then(function () {
-      return plugins.initialiseThemes(ankit, config, 'mainTheme')
-    })
-    .then(function () {
-      return plugins.initialisePluginsThemes(ankit)
-    })
-    .then(function () {
-      return plugins.executeModules(ankit, mainApp, adminApp)
-    })
-    .then(function () {
-      return {
-        mainApp: mainApp,
-        adminApp: adminApp,
-      }
-    })
-  
-/*  return plugins.loadPlugins(config.plugins)
-    .addProperties(config)
-    .hashModulesUsingNames()
-    .modifyDefinition(config)
-    .initialiseModules(config)
-    .then(function () {
-      return plugins.initialiseThemes(config, 'adminTheme')
-    })
-    .then(function () {
-      return plugins.initialiseThemes(config, 'mainTheme')
-    })
-    .then(function () {
-      return plugins.initialisePluginsThemes(config)
-    })
-    .then(function () {
-      return plugins.executeModules(mainApp, adminApp, config)
-    })
-    .catch(function (er) {
-      logger.error(er)
-    })
-    .then(function () {
-      logger.info('done')
-      return {
-        mainApp: mainApp,
-        adminApp: adminApp,
-        plugins: plugins.getAllPlugins()
-      }
-    })
-    */
+var bluebird = require('bluebird')
+module.exports = {
+  preparePlugins: function (config) {
+    const plugins = pluginsLoader.addProperties(config.plugins, config)
+    return pluginsLoader.modifyDefinition(plugins)
+  },
+  initPlugins: function (config) {
+    return pluginsLoader.initialiseModules(
+      this.preparePlugins(config)
+    )
+  },
+  initAdminTheme: function (initedPlugins, config) {
+    return initedPlugins
+      .then(function (plugins) {
+        return pluginsLoader.initialiseThemes(plugins, config, 'adminTheme')
+      })
+  },
+  initMainTheme: function (initedPlugins, config) {
+    return initedPlugins
+      .then(function (plugins) {
+        return pluginsLoader.initialiseThemes(plugins, config, 'adminTheme')
+      })
+  },
+  initPluginsThemes: function (initedPlugins) {
+    return initedPlugins
+      .then(function (plugins) {
+        return pluginsLoader.initialisePluginsThemes(plugins)
+      })
+  },
+  initPluginsAndAllThemes: function (initedPlugins, config) {
+    return initedPlugins
+      .then(function (plugins) {
+        return bluebird.all([
+          pluginsLoader.initialiseThemes(plugins, config, 'adminTheme'),
+          pluginsLoader.initialiseThemes(plugins, config, 'mainTheme'),
+          pluginsLoader.initialisePluginsThemes(plugins)
+        ])
+      })
+      .then(function (plugins) {
+        return plugins[0]
+      })
+  },
+  executePlugins: function (initedPlugins, config) {
+    return initedPlugins
+      .then(function (plugins) {
+        return pluginsLoader.executeModules(plugins, config)
+      })
+  },
+  run: function (config) {
+    return this.executePlugins(
+      this.initPluginsAndAllThemes(
+        this.initPlugins(config),
+        config
+      ),
+      config
+    )
+  }
 }

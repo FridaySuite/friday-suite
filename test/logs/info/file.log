@@ -1,0 +1,132 @@
+{"level":"info","message":"No admin-theme found in DB","timestamp":"2017-04-12T20:13:48.787Z"}
+{"level":"info","message":"No main-theme found in DB","timestamp":"2017-04-12T20:13:48.790Z"}
+{"level":"info","message":"No plugins-family found in DB","timestamp":"2017-04-12T20:13:48.791Z"}
+{"level":"info","message":"No themes-family found in DB","timestamp":"2017-04-12T20:13:48.791Z"}
+{"level":"info","message":"No plugins found in DB","timestamp":"2017-04-12T20:13:48.792Z"}
+{"level":"info","message":"Going to initialize admin-user-schema","timestamp":"2017-04-12T20:13:49.378Z"}
+{"level":"info","message":"admin-user-schema initialized","timestamp":"2017-04-12T20:13:49.379Z"}
+{"level":"info","message":"Going to initialize authenticate-admin-ui","timestamp":"2017-04-12T20:13:49.379Z"}
+{"level":"info","message":"authenticate-admin-ui initialized","timestamp":"2017-04-12T20:13:49.383Z"}
+{"level":"info","message":"No admin-theme found in DB","timestamp":"2017-04-12T20:14:18.627Z"}
+{"level":"info","message":"No main-theme found in DB","timestamp":"2017-04-12T20:14:18.631Z"}
+{"level":"info","message":"No plugins-family found in DB","timestamp":"2017-04-12T20:14:18.631Z"}
+{"level":"info","message":"No themes-family found in DB","timestamp":"2017-04-12T20:14:18.631Z"}
+{"level":"info","message":"No plugins found in DB","timestamp":"2017-04-12T20:14:18.632Z"}
+{"level":"info","message":"Going to initialize admin-user-schema","timestamp":"2017-04-12T20:14:19.204Z"}
+{"level":"info","message":"admin-user-schema initialized","timestamp":"2017-04-12T20:14:19.205Z"}
+{"level":"info","message":"Going to initialize authenticate-admin-ui","timestamp":"2017-04-12T20:14:19.205Z"}
+{"level":"info","message":"authenticate-admin-ui initialized","timestamp":"2017-04-12T20:14:19.208Z"}
+{"level":"info","message":"Going to initialize admin-user-schema","timestamp":"2017-04-12T20:14:19.209Z"}
+{"level":"info","message":"admin-user-schema initialized","timestamp":"2017-04-12T20:14:19.209Z"}
+{"level":"info","message":"Going to initialize authenticate-admin-ui","timestamp":"2017-04-12T20:14:19.209Z"}
+{"level":"info","message":"authenticate-admin-ui initialized","timestamp":"2017-04-12T20:14:19.210Z"}
+{"level":"info","message":"Going to initialize the thememorgan","timestamp":"2017-04-12T20:14:19.215Z"}
+{"message":"Cannot read property 'init' of undefined","stack":"TypeError: Cannot read property 'init' of undefined\n    at /media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/core/plugins/loader.js:154:39\n    at Array.forEach (native)\n    at Object.initialiseThemes (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/core/plugins/loader.js:153:20)\n    at /media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/core/plugins/index.js:37:25\n    at tryCatcher (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/util.js:16:23)\n    at Promise._settlePromiseFromHandler (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js:510:31)\n    at Promise._settlePromise (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js:567:18)\n    at Promise._settlePromise0 (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js:612:10)\n    at Promise._settlePromises (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js:691:18)\n    at Async._drainQueue (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/async.js:133:16)\n    at Async._drainQueues (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/async.js:143:10)\n    at Immediate.Async.drainQueues (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/async.js:17:14)\n    at runCallback (timers.js:666:20)\n    at tryOnImmediate (timers.js:639:5)\n    at processImmediate [as _immediateCallback] (timers.js:611:5)","level":"error","timestamp":"2017-04-12T20:14:19.215Z"}
+{"level":"info","message":"No admin-theme found in DB","timestamp":"2017-04-12T20:14:30.457Z"}
+{"level":"info","message":"No main-theme found in DB","timestamp":"2017-04-12T20:14:30.460Z"}
+{"level":"info","message":"No plugins-family found in DB","timestamp":"2017-04-12T20:14:30.461Z"}
+{"level":"info","message":"No themes-family found in DB","timestamp":"2017-04-12T20:14:30.461Z"}
+{"level":"info","message":"No plugins found in DB","timestamp":"2017-04-12T20:14:30.462Z"}
+{"level":"info","message":"Going to initialize admin-context","timestamp":"2017-04-12T20:14:31.036Z"}
+{"level":"info","message":"admin-context initialized","timestamp":"2017-04-12T20:14:31.037Z"}
+{"level":"info","message":"Going to initialize admin-theme","timestamp":"2017-04-12T20:14:31.037Z"}
+{"level":"info","message":"admin-theme initialized","timestamp":"2017-04-12T20:14:31.038Z"}
+{"level":"info","message":"Going to initialize post-schema","timestamp":"2017-04-12T20:14:31.038Z"}
+{"level":"info","message":"post-schema initialized","timestamp":"2017-04-12T20:14:31.038Z"}
+{"level":"info","message":"Going to initialize admin-user-schema","timestamp":"2017-04-12T20:14:31.039Z"}
+{"level":"info","message":"admin-user-schema initialized","timestamp":"2017-04-12T20:14:31.039Z"}
+{"level":"info","message":"Going to initialize authenticate-admin-ui","timestamp":"2017-04-12T20:14:31.039Z"}
+{"level":"info","message":"authenticate-admin-ui initialized","timestamp":"2017-04-12T20:14:31.042Z"}
+{"level":"info","message":"Going to initialize admin-permissions","timestamp":"2017-04-12T20:14:31.042Z"}
+{"level":"info","message":"admin-permissions initialized","timestamp":"2017-04-12T20:14:31.043Z"}
+{"level":"info","message":"Going to initialize widget-maker","timestamp":"2017-04-12T20:14:31.043Z"}
+{"level":"info","message":"widget-maker initialized","timestamp":"2017-04-12T20:14:31.043Z"}
+{"level":"info","message":"Going to initialize add-posts","timestamp":"2017-04-12T20:14:31.044Z"}
+{"level":"info","message":"add-posts initialized","timestamp":"2017-04-12T20:14:31.044Z"}
+{"level":"info","message":"Going to initialize admin-dashboard","timestamp":"2017-04-12T20:14:31.044Z"}
+{"level":"info","message":"admin-dashboard initialized","timestamp":"2017-04-12T20:14:31.045Z"}
+{"level":"info","message":"Going to initialize admin-ui-user-manager","timestamp":"2017-04-12T20:14:31.045Z"}
+{"level":"info","message":"admin-ui-user-manager initialized","timestamp":"2017-04-12T20:14:31.045Z"}
+{"level":"info","message":"Going to initialize blog-info","timestamp":"2017-04-12T20:14:31.045Z"}
+{"level":"info","message":"blog-info initialized","timestamp":"2017-04-12T20:14:31.046Z"}
+{"level":"info","message":"Going to initialize media","timestamp":"2017-04-12T20:14:31.046Z"}
+{"level":"info","message":"media initialized","timestamp":"2017-04-12T20:14:31.048Z"}
+{"level":"info","message":"Going to initialize the thememorgan","timestamp":"2017-04-12T20:14:31.050Z"}
+{"level":"info","message":"Executing admin-context","timestamp":"2017-04-12T20:14:31.066Z"}
+{"level":"info","message":"admin-context Executed ","timestamp":"2017-04-12T20:14:31.068Z"}
+{"level":"info","message":"Executing admin-user-schema","timestamp":"2017-04-12T20:14:31.068Z"}
+{"level":"info","message":"admin-user-schema Executed ","timestamp":"2017-04-12T20:14:31.073Z"}
+{"level":"info","message":"Executing authenticate-admin-ui","timestamp":"2017-04-12T20:14:31.073Z"}
+{"level":"info","message":"authenticate-admin-ui Executed ","timestamp":"2017-04-12T20:14:31.087Z"}
+{"level":"info","message":"Executing post-schema","timestamp":"2017-04-12T20:14:31.087Z"}
+{"level":"info","message":"post-schema Executed ","timestamp":"2017-04-12T20:14:31.089Z"}
+{"level":"info","message":"Executing admin-permissions","timestamp":"2017-04-12T20:14:31.089Z"}
+{"level":"info","message":"admin-permissions Executed ","timestamp":"2017-04-12T20:14:31.148Z"}
+{"level":"info","message":"Executing add-posts","timestamp":"2017-04-12T20:14:31.148Z"}
+{"level":"info","message":"add-posts Executed ","timestamp":"2017-04-12T20:14:31.206Z"}
+{"level":"info","message":"Executing admin-dashboard","timestamp":"2017-04-12T20:14:31.206Z"}
+{"level":"info","message":"admin-dashboard Executed ","timestamp":"2017-04-12T20:14:31.207Z"}
+{"level":"info","message":"Executing admin-theme","timestamp":"2017-04-12T20:14:31.207Z"}
+{"level":"info","message":"admin-theme Executed ","timestamp":"2017-04-12T20:14:31.208Z"}
+{"level":"info","message":"Executing admin-ui-user-manager","timestamp":"2017-04-12T20:14:31.208Z"}
+{"level":"info","message":"admin-ui-user-manager Executed ","timestamp":"2017-04-12T20:14:31.233Z"}
+{"level":"info","message":"Executing widget-maker","timestamp":"2017-04-12T20:14:31.233Z"}
+{"level":"info","message":"widget-maker Executed ","timestamp":"2017-04-12T20:14:31.235Z"}
+{"level":"info","message":"Executing blog-info","timestamp":"2017-04-12T20:14:31.235Z"}
+{"level":"info","message":"blog-info Executed ","timestamp":"2017-04-12T20:14:31.236Z"}
+{"level":"info","message":"Executing media","timestamp":"2017-04-12T20:14:31.236Z"}
+{"level":"info","message":"media Executed ","timestamp":"2017-04-12T20:14:31.295Z"}
+{"level":"info","message":"No admin-theme found in DB","timestamp":"2017-04-12T20:40:09.901Z"}
+{"level":"info","message":"No main-theme found in DB","timestamp":"2017-04-12T20:40:09.904Z"}
+{"level":"info","message":"No plugins-family found in DB","timestamp":"2017-04-12T20:40:09.905Z"}
+{"level":"info","message":"No themes-family found in DB","timestamp":"2017-04-12T20:40:09.905Z"}
+{"level":"info","message":"No plugins found in DB","timestamp":"2017-04-12T20:40:09.906Z"}
+{"level":"info","message":"Going to initialize admin-context","timestamp":"2017-04-12T20:40:10.503Z"}
+{"level":"info","message":"admin-context initialized","timestamp":"2017-04-12T20:40:10.504Z"}
+{"level":"info","message":"Going to initialize admin-theme","timestamp":"2017-04-12T20:40:10.504Z"}
+{"level":"info","message":"admin-theme initialized","timestamp":"2017-04-12T20:40:10.505Z"}
+{"level":"info","message":"Going to initialize post-schema","timestamp":"2017-04-12T20:40:10.505Z"}
+{"level":"info","message":"post-schema initialized","timestamp":"2017-04-12T20:40:10.506Z"}
+{"level":"info","message":"Going to initialize admin-user-schema","timestamp":"2017-04-12T20:40:10.506Z"}
+{"level":"info","message":"admin-user-schema initialized","timestamp":"2017-04-12T20:40:10.506Z"}
+{"level":"info","message":"Going to initialize authenticate-admin-ui","timestamp":"2017-04-12T20:40:10.506Z"}
+{"level":"info","message":"authenticate-admin-ui initialized","timestamp":"2017-04-12T20:40:10.509Z"}
+{"level":"info","message":"Going to initialize admin-permissions","timestamp":"2017-04-12T20:40:10.509Z"}
+{"level":"info","message":"admin-permissions initialized","timestamp":"2017-04-12T20:40:10.510Z"}
+{"level":"info","message":"Going to initialize widget-maker","timestamp":"2017-04-12T20:40:10.510Z"}
+{"level":"info","message":"widget-maker initialized","timestamp":"2017-04-12T20:40:10.511Z"}
+{"level":"info","message":"Going to initialize add-posts","timestamp":"2017-04-12T20:40:10.511Z"}
+{"level":"info","message":"add-posts initialized","timestamp":"2017-04-12T20:40:10.511Z"}
+{"level":"info","message":"Going to initialize admin-dashboard","timestamp":"2017-04-12T20:40:10.511Z"}
+{"level":"info","message":"admin-dashboard initialized","timestamp":"2017-04-12T20:40:10.512Z"}
+{"level":"info","message":"Going to initialize admin-ui-user-manager","timestamp":"2017-04-12T20:40:10.512Z"}
+{"level":"info","message":"admin-ui-user-manager initialized","timestamp":"2017-04-12T20:40:10.512Z"}
+{"level":"info","message":"Going to initialize blog-info","timestamp":"2017-04-12T20:40:10.512Z"}
+{"level":"info","message":"blog-info initialized","timestamp":"2017-04-12T20:40:10.513Z"}
+{"level":"info","message":"Going to initialize media","timestamp":"2017-04-12T20:40:10.513Z"}
+{"level":"info","message":"media initialized","timestamp":"2017-04-12T20:40:10.515Z"}
+{"level":"info","message":"Going to initialize the thememorgan","timestamp":"2017-04-12T20:40:10.518Z"}
+{"level":"info","message":"Executing admin-context","timestamp":"2017-04-12T20:40:10.534Z"}
+{"level":"info","message":"admin-context Executed ","timestamp":"2017-04-12T20:40:10.536Z"}
+{"level":"info","message":"Executing admin-user-schema","timestamp":"2017-04-12T20:40:10.536Z"}
+{"level":"info","message":"admin-user-schema Executed ","timestamp":"2017-04-12T20:40:10.540Z"}
+{"level":"info","message":"Executing authenticate-admin-ui","timestamp":"2017-04-12T20:40:10.540Z"}
+{"level":"info","message":"authenticate-admin-ui Executed ","timestamp":"2017-04-12T20:40:10.553Z"}
+{"level":"info","message":"Executing post-schema","timestamp":"2017-04-12T20:40:10.553Z"}
+{"level":"info","message":"post-schema Executed ","timestamp":"2017-04-12T20:40:10.555Z"}
+{"level":"info","message":"Executing admin-permissions","timestamp":"2017-04-12T20:40:10.556Z"}
+{"level":"info","message":"admin-permissions Executed ","timestamp":"2017-04-12T20:40:10.613Z"}
+{"level":"info","message":"Executing add-posts","timestamp":"2017-04-12T20:40:10.613Z"}
+{"level":"info","message":"add-posts Executed ","timestamp":"2017-04-12T20:40:10.672Z"}
+{"level":"info","message":"Executing admin-dashboard","timestamp":"2017-04-12T20:40:10.672Z"}
+{"level":"info","message":"admin-dashboard Executed ","timestamp":"2017-04-12T20:40:10.673Z"}
+{"level":"info","message":"Executing admin-theme","timestamp":"2017-04-12T20:40:10.673Z"}
+{"level":"info","message":"admin-theme Executed ","timestamp":"2017-04-12T20:40:10.674Z"}
+{"level":"info","message":"Executing admin-ui-user-manager","timestamp":"2017-04-12T20:40:10.674Z"}
+{"level":"info","message":"admin-ui-user-manager Executed ","timestamp":"2017-04-12T20:40:10.697Z"}
+{"level":"info","message":"Executing widget-maker","timestamp":"2017-04-12T20:40:10.698Z"}
+{"level":"info","message":"widget-maker Executed ","timestamp":"2017-04-12T20:40:10.699Z"}
+{"level":"info","message":"Executing blog-info","timestamp":"2017-04-12T20:40:10.699Z"}
+{"level":"info","message":"blog-info Executed ","timestamp":"2017-04-12T20:40:10.700Z"}
+{"level":"info","message":"Executing media","timestamp":"2017-04-12T20:40:10.700Z"}
+{"level":"info","message":"media Executed ","timestamp":"2017-04-12T20:40:10.754Z"}

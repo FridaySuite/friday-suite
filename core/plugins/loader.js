@@ -4,6 +4,8 @@ var bluebird = require('bluebird')
 var Injector = require('./injector.js')
 var isString = require('lodash.isstring')
 var logger = require('winston')
+var express = require('express')
+var path = require('path')
 module.exports = {
   getAllPlugins: function (plugins) {
     return plugins
@@ -64,8 +66,8 @@ module.exports = {
         name: plugin.name,
         dir: plugin.dir,
         init: instances.init,
-        privateMethod: instances.private,
-        publicMethod: instances.public,
+        privateMethods: instances.private,
+        publicMethods: instances.public,
         config: $config
       }
     })
@@ -84,7 +86,7 @@ module.exports = {
     /*
     modules is complete module object from addPropertiesToModules function
     */
-    return plugins.map(function (plugin) {
+    plugins.forEach(function (plugin) {
       let pluginExported = require(plugin.config.plugin.path)
       if (!pluginExported.hasOwnProperty('init')) {
         pluginExported.init = function () {
@@ -96,21 +98,21 @@ module.exports = {
           return bluebird.resolve()
         }
       }
-      return pluginExported
     })
+    return plugins
   },
   initialiseModules: function (plugins) {
     var self = this
     var initialiseSequence
     var allPromise
     const hashedPlugins = this.hashPluginsUsingNames(plugins)
-    initialiseSequence = createInitialiseSequence(plugins)
+    initialiseSequence = this.createInitialiseSequence(plugins, plugins)
     allPromise = []
     initialiseSequence.forEach(function (module) {
       var moduleObj,
         additionalDeps,
         injector
-      logger.info('Going to initialize ' + module.name + ' of directory ' + module.dir)
+      logger.info('Going to initialize ' + module.name)
       moduleObj = hashedPlugins[module.name]
       additionalDeps = {
         config: moduleObj.config,
@@ -123,7 +125,9 @@ module.exports = {
       allPromise.push(injector.getFunction(require(moduleObj.config.plugin.path)))
       logger.info(module.name + ' initialized')
     })
-    return bluebird.all(allPromise)
+    return bluebird.all(allPromise).then(function () {
+      return plugins
+    })
   },
   initialiseThemes: function (plugins, config, typeOfTheme) {
     var themeObj,
@@ -136,17 +140,23 @@ module.exports = {
       themeObj = require('../../' + config.themesFamily + '/node_modules/' + config[typeOfTheme])
     } catch (err) {
       return bluebird.resolve()
+        .then(function () {
+          return plugins
+        })
     }
     self = this
     themeDecorates = getArguments(themeObj.init)
-    logger.info('Going to initialize the theme' + config.adminTheme)
+    logger.info('Going to initialize the theme' + config[typeOfTheme])
     additionalDeps = {
     }
     injector = new Injector(null, null, {}, self.rootDir, additionalDeps)
     themeDecorates.forEach(function (m) {
       injector.add(m, hashedPlugins[m].init)
     })
-    return bluebird.resolve(injector.getFunction(themeObj))
+    return bluebird.all([injector.getFunction(themeObj)])
+      .then(function () {
+        return plugins
+      })
   },
   initialisePluginsThemes: function (plugins) {
     var self = this
@@ -174,13 +184,22 @@ module.exports = {
       logger.info(plugin.config.plugin.theme.name + ' initialized')
     })
     return bluebird.all(allPromise)
+      .then(function () {
+        return plugins
+      })
   },
-  executeModules: function (plugins, app, adminApp) {
+  executeModules: function (plugins, config) {
     var self,
       executeSequence,
       allPromise
     self = this
+    var mainApp = express()
+    var adminApp = express()
+    var themesDir = path.join(config.rootDir, config.themesFamily, 'node_modules')
+    adminApp.use('/public', express.static(themesDir))
+    mainApp.use('/public', express.static(themesDir))
     executeSequence = createExecuteSequence(plugins)
+    console.log(executeSequence)
     allPromise = []
     const hashedPlugins = this.hashPluginsUsingNames(plugins)
     executeSequence.forEach(function (module) {
@@ -191,50 +210,53 @@ module.exports = {
       moduleObj = hashedPlugins[module.name]
       additionalDeps = {
         config: moduleObj.config,
-        self: moduleObj.privateMethod
+        self: moduleObj.privateMethods
       }
-      injector = new Injector(app, adminApp, moduleObj.config, self.rootDir, additionalDeps)
+      injector = new Injector(mainApp, adminApp, moduleObj.config, self.rootDir, additionalDeps)
       module.accesses.forEach(function (m) {
-        injector.add(m, hashedPlugins[m].publicMethod)
+        injector.add(m, hashedPlugins[m].publicMethods)
       })
       allPromise.push(injector.getToExecute(require(moduleObj.config.plugin.path)))
       logger.info(module.name + ' Executed ')
     })
     return bluebird.all(allPromise)
-  }
-}
-
-function createInitialiseSequence (plugins) {
-  /*
-  modules is complete module object from addPropertiesToModules
-  */
-  var pluginDecorates = {}
-  var sequence = []
-  var hasBeenAdded = {}
-  plugins.forEach(function (plugin) {
-    pluginDecorates[plugin.name] = getArguments(require(plugin.config.plugin.path).init)
-  })
-  plugins.forEach(function (plugin) {
-    addToSequence(plugin.name)
-  })
-  return sequence
-
-  function addToSequence (plugin) {
-    var i,
-      thisModuleDecorates
-    if (hasBeenAdded.hasOwnProperty(plugin)) {
-      return
-    }
-    thisModuleDecorates = pluginDecorates[plugin]
-    hasBeenAdded[plugin] = true
-    for (i = 0; i < thisModuleDecorates.length; i++) {
-      addToSequence(thisModuleDecorates[i])
-    }
-    sequence.push({
-      name: plugin,
-      decorates: thisModuleDecorates
+      .then(function () {
+        return {
+          mainApp: mainApp,
+          adminApp: adminApp
+        }
+      })
+  },
+  createInitialiseSequence: function (plugins, neededPlugins) {
+    var pluginDecorates = {}
+    var sequence = []
+    var hasBeenAdded = {}
+    plugins.forEach(function (plugin) {
+      pluginDecorates[plugin.name] = getArguments(require(plugin.config.plugin.path).init)
     })
+    neededPlugins.forEach(function (plugin) {
+      addToSequence(plugin.name)
+    })
+    return sequence
+
+    function addToSequence (plugin) {
+      var i,
+        thisModuleDecorates
+      if (hasBeenAdded.hasOwnProperty(plugin)) {
+        return
+      }
+      thisModuleDecorates = pluginDecorates[plugin]
+      hasBeenAdded[plugin] = true
+      for (i = 0; i < thisModuleDecorates.length; i++) {
+        addToSequence(thisModuleDecorates[i])
+      }
+      sequence.push({
+        name: plugin,
+        decorates: thisModuleDecorates
+      })
+    }
   }
+
 }
 
 function createExecuteSequence (Modules) {
@@ -304,28 +326,28 @@ function addDirAndAssetDirToTheme (config, pluginsFamily, themesFamily, rootDir)
 }
 
 function createNewInstances () {
-  var publicMethod = {}
-  var PrivateMethod = function () {}
-  PrivateMethod.prototype = publicMethod
-  var privateMethodInstance = new PrivateMethod()
-  var InitMethod = function () {
+  var publicMethods = {}
+  var PrivateMethods = function () {}
+  PrivateMethods.prototype = publicMethods
+  var privateMethodsInstance = new PrivateMethods()
+  var InitMethods = function () {
     this.init = {}
     this.init.register = this
-    this.publicMethod = publicMethod
-    this.privateAndPublicMethod = privateMethodInstance
+    this.publicMethods = publicMethods
+    this.privateAndPublicMethod = privateMethodsInstance
     this.wrap = function (contextName, func) {
       var temp,
         temp2,
         thisObject
-      if (!privateMethodInstance.hasOwnProperty(contextName) &&
-          !publicMethod.hasOwnProperty(contextName)) {
+      if (!privateMethodsInstance.hasOwnProperty(contextName) &&
+          !publicMethods.hasOwnProperty(contextName)) {
         // throw error that method does not exist
         return
       }
-      if (privateMethodInstance.hasOwnProperty(contextName)) {
-        thisObject = privateMethodInstance
-      } else if (publicMethod.hasOwnProperty(contextName)) {
-        thisObject = publicMethod
+      if (privateMethodsInstance.hasOwnProperty(contextName)) {
+        thisObject = privateMethodsInstance
+      } else if (publicMethods.hasOwnProperty(contextName)) {
+        thisObject = publicMethods
       }
       temp = thisObject[contextName]
       temp2 = func.bind(temp.data, temp)
@@ -360,16 +382,16 @@ function createNewInstances () {
         return this
       }
       if (options.hasOwnProperty('isPublic') && options.isPublic === false) {
-        privateMethodInstance[options.name] = temp3
+        privateMethodsInstance[options.name] = temp3
       } else {
-        publicMethod[options.name] = temp3
+        publicMethods[options.name] = temp3
       }
     }
   }
-  InitMethod.prototype = privateMethodInstance
+  InitMethods.prototype = privateMethodsInstance
   return {
-    private: privateMethodInstance,
-    public: publicMethod,
-    init: new InitMethod()
+    private: privateMethodsInstance,
+    public: publicMethods,
+    init: new InitMethods()
   }
 }

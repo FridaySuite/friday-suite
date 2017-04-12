@@ -6,7 +6,7 @@ var app = express()
 var port = process.env.PORT || 8080
 var logger = require('./core/logger')
 var configDB = require('./config/database.js')
-var pluginLoader = require('./core/plugins/index.js')
+var pluginsLoadWrapper = require('./core/plugins/index.js')
 var configLoader = require('./core/config/loader.js')(__dirname)
 var appConfig = require('./core/app/configure.js')
 var bluebird = require('bluebird')
@@ -20,7 +20,7 @@ configLoader
   })
   .then(function (config) {
     appConfig(app, config)
-    return pluginLoader(config)
+    return pluginsLoadWrapper.run(config)
   })
   .then(function (obj) {
     app.use('/admin', obj.adminApp)
