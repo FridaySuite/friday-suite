@@ -2,11 +2,11 @@
 
 ### What is friday-suite
 
-Well, for those of you who are still wandering about what is friday-suite, I still haven't figured it out yet. It is more like a content management system. Or in other words, it is an environment to load bunch of specially created plugins like [butterscotch](https://github.com/butterscotch-plugins/butterscotch) to achieve something like blogging platform etc.
+Friday-suite is a content management system. Or in other words, it is an environment to load bunch of specially created plugins like [butterscotch](https://github.com/butterscotch-plugins/butterscotch) to achieve something like blogging platform etc.
 
 ### What does it do
 
-It basically loads up all the plugins and their themes. Different types of specially designed plugins can be loaded using this kit.
+It basically loads up all the plugins and their themes. Different types of specially designed plugins can be loaded using friday-suite.
 
 ### Installation
 
