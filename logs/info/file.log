@@ -57,3 +57,66 @@
 {"level":"info","message":"GET /admin 200 1226 - 172.347 ms\n","timestamp":"2017-04-12T20:41:01.516Z"}
 {"level":"info","message":"GET /public/morgan/public/css/style.css 304 - - 16.285 ms\n","timestamp":"2017-04-12T20:41:01.548Z"}
 {"level":"info","message":"GET /public/morgan/public/css/bootstrap.min.css 304 - - 1.590 ms\n","timestamp":"2017-04-12T20:41:01.552Z"}
+{"level":"info","message":"Going to initialize admin-context","timestamp":"2017-04-13T13:26:51.369Z"}
+{"level":"info","message":"admin-context initialized","timestamp":"2017-04-13T13:26:51.382Z"}
+{"level":"info","message":"Going to initialize admin-theme","timestamp":"2017-04-13T13:26:51.383Z"}
+{"level":"info","message":"admin-theme initialized","timestamp":"2017-04-13T13:26:51.383Z"}
+{"level":"info","message":"Going to initialize post-schema","timestamp":"2017-04-13T13:26:51.383Z"}
+{"level":"info","message":"post-schema initialized","timestamp":"2017-04-13T13:26:51.384Z"}
+{"level":"info","message":"Going to initialize admin-user-schema","timestamp":"2017-04-13T13:26:51.384Z"}
+{"level":"info","message":"admin-user-schema initialized","timestamp":"2017-04-13T13:26:51.385Z"}
+{"level":"info","message":"Going to initialize authenticate-admin-ui","timestamp":"2017-04-13T13:26:51.385Z"}
+{"level":"info","message":"authenticate-admin-ui initialized","timestamp":"2017-04-13T13:26:51.387Z"}
+{"level":"info","message":"Going to initialize admin-permissions","timestamp":"2017-04-13T13:26:51.387Z"}
+{"level":"info","message":"admin-permissions initialized","timestamp":"2017-04-13T13:26:51.388Z"}
+{"level":"info","message":"Going to initialize widget-maker","timestamp":"2017-04-13T13:26:51.388Z"}
+{"level":"info","message":"widget-maker initialized","timestamp":"2017-04-13T13:26:51.389Z"}
+{"level":"info","message":"Going to initialize add-posts","timestamp":"2017-04-13T13:26:51.389Z"}
+{"level":"info","message":"add-posts initialized","timestamp":"2017-04-13T13:26:51.390Z"}
+{"level":"info","message":"Going to initialize admin-dashboard","timestamp":"2017-04-13T13:26:51.390Z"}
+{"level":"info","message":"admin-dashboard initialized","timestamp":"2017-04-13T13:26:51.390Z"}
+{"level":"info","message":"Going to initialize admin-ui-user-manager","timestamp":"2017-04-13T13:26:51.390Z"}
+{"level":"info","message":"admin-ui-user-manager initialized","timestamp":"2017-04-13T13:26:51.390Z"}
+{"level":"info","message":"Going to initialize blog-info","timestamp":"2017-04-13T13:26:51.391Z"}
+{"level":"info","message":"blog-info initialized","timestamp":"2017-04-13T13:26:51.391Z"}
+{"level":"info","message":"Going to initialize media","timestamp":"2017-04-13T13:26:51.391Z"}
+{"level":"info","message":"media initialized","timestamp":"2017-04-13T13:26:51.393Z"}
+{"level":"info","message":"Going to initialize the thememorgan","timestamp":"2017-04-13T13:26:51.411Z"}
+{"level":"info","message":"Going to initialize theme default_theme of add-posts","timestamp":"2017-04-13T13:26:51.413Z"}
+{"level":"info","message":"default_theme initialized","timestamp":"2017-04-13T13:26:51.414Z"}
+{"level":"info","message":"Going to initialize theme default_theme of admin-dashboard","timestamp":"2017-04-13T13:26:51.416Z"}
+{"level":"info","message":"default_theme initialized","timestamp":"2017-04-13T13:26:51.416Z"}
+{"level":"info","message":"Going to initialize theme default_theme of admin-permissions","timestamp":"2017-04-13T13:26:51.417Z"}
+{"level":"info","message":"default_theme initialized","timestamp":"2017-04-13T13:26:51.417Z"}
+{"level":"info","message":"Executing admin-context","timestamp":"2017-04-13T13:26:51.428Z"}
+{"level":"info","message":"admin-context Executed ","timestamp":"2017-04-13T13:26:51.429Z"}
+{"level":"info","message":"Executing admin-user-schema","timestamp":"2017-04-13T13:26:51.430Z"}
+{"level":"info","message":"admin-user-schema Executed ","timestamp":"2017-04-13T13:26:51.433Z"}
+{"level":"info","message":"Executing authenticate-admin-ui","timestamp":"2017-04-13T13:26:51.434Z"}
+{"level":"info","message":"authenticate-admin-ui Executed ","timestamp":"2017-04-13T13:26:51.478Z"}
+{"level":"info","message":"Executing post-schema","timestamp":"2017-04-13T13:26:51.478Z"}
+{"level":"info","message":"post-schema Executed ","timestamp":"2017-04-13T13:26:51.480Z"}
+{"level":"info","message":"Executing admin-permissions","timestamp":"2017-04-13T13:26:51.480Z"}
+{"level":"info","message":"admin-permissions Executed ","timestamp":"2017-04-13T13:26:51.979Z"}
+{"level":"info","message":"Executing add-posts","timestamp":"2017-04-13T13:26:51.979Z"}
+{"level":"info","message":"add-posts Executed ","timestamp":"2017-04-13T13:26:52.475Z"}
+{"level":"info","message":"Executing admin-dashboard","timestamp":"2017-04-13T13:26:52.475Z"}
+{"level":"info","message":"admin-dashboard Executed ","timestamp":"2017-04-13T13:26:52.476Z"}
+{"level":"info","message":"Executing admin-theme","timestamp":"2017-04-13T13:26:52.476Z"}
+{"level":"info","message":"admin-theme Executed ","timestamp":"2017-04-13T13:26:52.477Z"}
+{"level":"info","message":"Executing admin-ui-user-manager","timestamp":"2017-04-13T13:26:52.477Z"}
+{"level":"info","message":"admin-ui-user-manager Executed ","timestamp":"2017-04-13T13:26:52.761Z"}
+{"level":"info","message":"Executing widget-maker","timestamp":"2017-04-13T13:26:52.761Z"}
+{"level":"info","message":"widget-maker Executed ","timestamp":"2017-04-13T13:26:52.762Z"}
+{"level":"info","message":"Executing blog-info","timestamp":"2017-04-13T13:26:52.762Z"}
+{"level":"info","message":"blog-info Executed ","timestamp":"2017-04-13T13:26:52.763Z"}
+{"level":"info","message":"Executing media","timestamp":"2017-04-13T13:26:52.763Z"}
+{"level":"info","message":"media Executed ","timestamp":"2017-04-13T13:26:53.151Z"}
+{"level":"info","message":"Error Middleware Added successfully","timestamp":"2017-04-13T13:26:53.152Z"}
+{"date":"Thu Apr 13 2017 18:56:53 GMT+0530 (IST)","process":{"pid":22703,"uid":1000,"gid":1000,"cwd":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS","execPath":"/usr/local/bin/node","version":"v6.10.2","argv":["/usr/local/bin/node","/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/server"],"memoryUsage":{"rss":82391040,"heapTotal":66801664,"heapUsed":38305784,"external":18474166}},"os":{"loadavg":[0.93359375,0.47265625,0.35791015625],"uptime":297329},"trace":[{"column":11,"file":"util.js","function":"Object.exports._errnoException","line":1018,"method":"exports._errnoException","native":false},{"column":20,"file":"util.js","function":"exports._exceptionWithHostPort","line":1041,"method":"_exceptionWithHostPort","native":false},{"column":14,"file":"net.js","function":"Server._listen2","line":1262,"method":"_listen2","native":false},{"column":10,"file":"net.js","function":"listen","line":1298,"method":null,"native":false},{"column":5,"file":"net.js","function":"Server.listen","line":1394,"method":"listen","native":false},{"column":24,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/express/lib/application.js","function":"EventEmitter.listen","line":617,"method":"listen","native":false},{"column":9,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/server.js","function":null,"line":29,"method":null,"native":false},{"column":23,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/util.js","function":"tryCatcher","line":16,"method":null,"native":false},{"column":31,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js","function":"Promise._settlePromiseFromHandler","line":510,"method":"_settlePromiseFromHandler","native":false},{"column":18,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js","function":"Promise._settlePromise","line":567,"method":"_settlePromise","native":false},{"column":10,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js","function":"Promise._settlePromise0","line":612,"method":"_settlePromise0","native":false},{"column":18,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js","function":"Promise._settlePromises","line":691,"method":"_settlePromises","native":false},{"column":16,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/async.js","function":"Async._drainQueue","line":133,"method":"_drainQueue","native":false},{"column":10,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/async.js","function":"Async._drainQueues","line":143,"method":"_drainQueues","native":false},{"column":14,"file":"/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/async.js","function":"Immediate.Async.drainQueues","line":17,"method":"Async.drainQueues","native":false},{"column":20,"file":"timers.js","function":"runCallback","line":666,"method":null,"native":false},{"column":5,"file":"timers.js","function":"tryOnImmediate","line":639,"method":null,"native":false},{"column":5,"file":"timers.js","function":"processImmediate [as _immediateCallback]","line":611,"method":null,"native":false}],"stack":["Error: listen EADDRINUSE :::8080","    at Object.exports._errnoException (util.js:1018:11)","    at exports._exceptionWithHostPort (util.js:1041:20)","    at Server._listen2 (net.js:1262:14)","    at listen (net.js:1298:10)","    at Server.listen (net.js:1394:5)","    at EventEmitter.listen (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/express/lib/application.js:617:24)","    at /media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/server.js:29:9","    at tryCatcher (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/util.js:16:23)","    at Promise._settlePromiseFromHandler (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js:510:31)","    at Promise._settlePromise (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js:567:18)","    at Promise._settlePromise0 (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js:612:10)","    at Promise._settlePromises (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/promise.js:691:18)","    at Async._drainQueue (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/async.js:133:16)","    at Async._drainQueues (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/async.js:143:10)","    at Immediate.Async.drainQueues (/media/afjhaf/FC8C84988C844ED8/Pthing/Projects/CMS/node_modules/bluebird/js/release/async.js:17:14)","    at runCallback (timers.js:666:20)","    at tryOnImmediate (timers.js:639:5)","    at processImmediate [as _immediateCallback] (timers.js:611:5)"],"level":"error","message":"uncaughtException: listen EADDRINUSE :::8080","timestamp":"2017-04-13T13:26:53.160Z"}
+{"level":"info","message":"GET /admin 304 - - 415.108 ms\n","timestamp":"2017-04-13T13:27:08.750Z"}
+{"level":"info","message":"GET /public/morgan/public/css/style.css 304 - - 62.364 ms\n","timestamp":"2017-04-13T13:27:08.848Z"}
+{"level":"info","message":"GET /public/morgan/public/css/bootstrap.min.css 304 - - 90.766 ms\n","timestamp":"2017-04-13T13:27:08.929Z"}
+{"level":"info","message":"GET /admin/users 200 1584 - 148.172 ms\n","timestamp":"2017-04-13T13:27:14.080Z"}
+{"level":"info","message":"GET /public/morgan/public/css/style.css 304 - - 1.561 ms\n","timestamp":"2017-04-13T13:27:14.095Z"}
+{"level":"info","message":"GET /public/morgan/public/css/bootstrap.min.css 304 - - 1.679 ms\n","timestamp":"2017-04-13T13:27:14.096Z"}

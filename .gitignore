@@ -1,6 +1,5 @@
 .*
 !/.gitignore
-!/.commit_msg
 node_modules/
 /butterscotch/
 /butterscotch-themes/
