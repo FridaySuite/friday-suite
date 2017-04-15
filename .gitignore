@@ -1,7 +1,10 @@
 .*
 !/.gitignore
+!/.commit_msg
 node_modules/
 /butterscotch/
 /butterscotch-themes/
 /docs/
 /processes.json
+*.rdb
+/logs/
